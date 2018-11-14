@@ -21,7 +21,9 @@ Pre-trained W2V is used: http://nlp.stanford.edu/data/glove.6B.zip
 > runme.py: use this script to run all things together
 
 ### Model
+<p align="center"> 
 <img src="https://user-images.githubusercontent.com/20760190/48497942-1e8e7a80-e803-11e8-8fd9-e73b06d00230.jpg" width="600">
+ </p>
 
 ### Reference
 > Convolutional Neural Networks for Sentence Classification: https://arxiv.org/abs/1408.5882
