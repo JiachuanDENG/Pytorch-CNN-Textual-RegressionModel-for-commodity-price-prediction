@@ -4,6 +4,7 @@ Using CNN to handel with textual data combine with meta data to build a regressi
 
 ### Data Set
 Data set is from Kaggle: https://www.kaggle.com/c/mercari-price-suggestion-challenge/data
+
 Pre-trained W2V is used: http://nlp.stanford.edu/data/glove.6B.zip
 
 ### Files Description
