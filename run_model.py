@@ -28,10 +28,13 @@ tr_len=int(config.get('Parameters','tr_len'))
 price_std=float(config.get('Parameters','price_std'))
 price_mean=float(config.get('Parameters','price_mean'))
 
+use_drop=config.getboolean('Parameters','use_drop')
+use_skip=config.getboolean('Parameters','use_skip')
 EPOCH=int(config.get('Parameters','epoch_num'))
 learning_rate=float(config.get('Parameters','lr'))
 BATCHSIZE=int(int(config.get('Parameters','batch_size')))
 minibatcher=minibatcher.MiniBatcher(BATCHSIZE,tr_len)
+
 
 use_cuda = torch.cuda.is_available()
 if use_cuda:
@@ -107,21 +110,11 @@ def eval_val():
 	val_stack_outs=np.vstack(val_outs)
 	val_stack_ys=np.vstack(val_ys)
 	val_out_adjusted=np.expm1(val_stack_outs*price_std+price_mean)
-	if len(val_stack_ys[val_stack_ys<0])!=0:
-		print ('val y has neg')
-	if len(val_out_adjusted[val_out_adjusted==float('inf')])!=0:
-		print ('forward has inf')
-	if len(val_stack_ys[val_stack_ys==float('inf')])!=0:
-		print ('val y has nan')
-	if np.isnan(val_out_adjusted).any():
-		print ('forward has nan')
-	if np.isnan(val_stack_ys).any():
-		print ('val y has nan')
 	return rmsle(val_out_adjusted, val_stack_ys)
 
 net=network.Network(word_embedding_initial,brand_num,32,\
 			cat_num,32,\
-			5,20).to(device)
+			5,20,use_drop,use_skip).to(device)
 optimizer=torch.optim.Adam(net.parameters(),learning_rate)
 loss_func = nn.MSELoss()
 

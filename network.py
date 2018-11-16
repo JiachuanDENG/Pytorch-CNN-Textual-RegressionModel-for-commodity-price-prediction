@@ -7,8 +7,10 @@ class Network(nn.Module):
     def __init__(self,word_embedding_initial,\
                  brand_num,brand_embdDim,\
                  cat_num,cat_embdDim,\
-                name_avg_num, desc_avg_num):
+                name_avg_num, desc_avg_num,use_drop=False,use_skip=False):
         super(Network,self).__init__()
+        self.use_drop=use_drop
+        self.use_skip=use_skip
         self.name_avg_num,self.desc_avg_num=name_avg_num,desc_avg_num
         # self.we : word embedding for name & description
         self.we=nn.Embedding(word_embedding_initial.shape[0],word_embedding_initial.shape[1])
@@ -37,10 +39,13 @@ class Network(nn.Module):
         self.bn2=nn.BatchNorm1d(256)
         self.drop1=nn.Dropout(0.5)
         self.FC2=nn.Linear(256,128)
-        
-        self.bn3=nn.BatchNorm1d(156)
+
+        fc3_inputsize=128
+        if self.use_skip:
+            fc3_inputsize+=31
+        self.bn3=nn.BatchNorm1d(fc3_inputsize)
         self.drop2=nn.Dropout(0.5)
-        self.FC3=nn.Linear(156,1)
+        self.FC3=nn.Linear(fc3_inputsize,1)
     
         
     def forward(self,name,desc,cat,brand,cond,ship,stats_features):
@@ -97,16 +102,18 @@ class Network(nn.Module):
         x_cat=self.bn1(x_cat)
         x_cat=self.FC1(x_cat)
         x_cat=F.relu(self.bn2(x_cat))
-  
-        x_cat=self.drop1(x_cat)
+        if self.use_drop:
+            x_cat=self.drop1(x_cat)
             
         x_cat=self.FC2(x_cat)
         x_cat=F.relu(x_cat)
         
-
-        x_cat=self.drop2(x_cat)
+        if self.use_drop:
+            x_cat=self.drop2(x_cat)
         #skip
-        x_cat=torch.cat((x_cat,cond,ship,stats_features),dim=1)
+
+        if self.use_skip:
+            x_cat=torch.cat((x_cat,cond,ship,stats_features),dim=1)
         x_cat=self.bn3(x_cat)
         out=self.FC3(x_cat)
         return out
