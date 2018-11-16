@@ -115,7 +115,7 @@ def eval_val():
 net=network.Network(word_embedding_initial,brand_num,32,\
 			cat_num,32,\
 			5,20,use_drop,use_skip).to(device)
-optimizer=torch.optim.Adam(net.parameters(),learning_rate)
+optimizer=torch.optim.Adam(net.parameters(),learning_rate,weight_decay=float(config.get('Parameters','weight_decay')))
 loss_func = nn.MSELoss()
 
 
