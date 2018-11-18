@@ -27,6 +27,7 @@ Pre-trained W2V is used: http://nlp.stanford.edu/data/glove.6B.zip
 <p align="center"> 
 <img src="https://user-images.githubusercontent.com/20760190/48676213-a80ab900-eb31-11e8-889f-ae305ca5d614.png" width="600">
  </p>
+Model can be built based on RNN structure or CNN structure. Here we only provide code for CNN structure, whose complexity is lower and performs better.
 
 ### Reference
 > Convolutional Neural Networks for Sentence Classification: https://arxiv.org/abs/1408.5882
