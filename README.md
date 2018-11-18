@@ -22,7 +22,10 @@ Pre-trained W2V is used: http://nlp.stanford.edu/data/glove.6B.zip
 
 ### Model
 <p align="center"> 
-<img src="https://user-images.githubusercontent.com/20760190/48583191-7c4ebf80-e8f4-11e8-8812-e81248eb9027.jpg" width="600">
+<img src="https://user-images.githubusercontent.com/20760190/48676214-a8a34f80-eb31-11e8-8664-48721b5ba2f2.png" width="600">
+ </p>
+<p align="center"> 
+<img src="https://user-images.githubusercontent.com/20760190/48676213-a80ab900-eb31-11e8-889f-ae305ca5d614.png" width="600">
  </p>
 
 ### Reference

@@ -44,7 +44,7 @@ class Network(nn.Module):
         if self.use_skip:
             fc3_inputsize+=31
         self.bn3=nn.BatchNorm1d(fc3_inputsize)
-        self.drop2=nn.Dropout(0.5)
+        # self.drop2=nn.Dropout(0.5)
         self.FC3=nn.Linear(fc3_inputsize,1)
     
         
@@ -108,9 +108,9 @@ class Network(nn.Module):
         x_cat=self.FC2(x_cat)
         x_cat=F.relu(x_cat)
         
-        if self.use_drop:
-            x_cat=self.drop2(x_cat)
-        #skip
+        # if self.use_drop:
+        #     x_cat=self.drop2(x_cat)
+        # #skip
 
         if self.use_skip:
             x_cat=torch.cat((x_cat,cond,ship,stats_features),dim=1)
