@@ -8,6 +8,7 @@ Data set is from Kaggle: https://www.kaggle.com/c/mercari-price-suggestion-chall
 Pre-trained W2V is used: http://nlp.stanford.edu/data/glove.6B.zip
 
 ### Files Description
+> DPLModel4textualRegression.pdf: detailed paper format description for our model
 > config.ini: you can change your data path and model parameters in this file
 
 > dataprocessing.py: script to process data into format that can be directly fed into model
@@ -34,7 +35,7 @@ Model can be built based on RNN structure or CNN structure. Here we only provide
 
 > Non-Linear Text Regression with a Deep Convolutional Neural Network: http://anthology.aclweb.org/P/P15/P15-2030.pdf
 
-> Empirical Bayes method for categorical features: http://helios.mm.di.uoa.gr/~rouvas/ssi/sigkdd/sigkdd.vol3.1/barreca.ps
+> Empirical Bayes method for categorical features: http://helios.mm.di.uoa.gr/~rouvas/ssi/sigkdd/sigkdd.vol3.1/barreca.pdf
 
 ### Run Code:
 run command : python3 runme.py
